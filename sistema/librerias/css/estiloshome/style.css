@@ -4,3 +4,18 @@
 .negrita{
   font-weight: bold !important;
 }
+@media (min-width: 768px) {
+    .boton {
+        width:auto;
+      }   
+      .w-100{
+          width: auto;
+      }
+}
+@media (max-width: 768px) {
+  .navegacion-principal {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}

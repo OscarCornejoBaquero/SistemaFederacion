@@ -11,7 +11,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>Federación de Arbritos</title>
-    
+    <link rel="icon" type="image/png" href="archivos/img/icono.png" />
     <link rel="stylesheet" href="sistema/librerias/css/estiloshome/slideshow.home.css">
     <link rel="stylesheet" href="sistema/librerias/css/estiloshome/home.css">
     <link rel="stylesheet" href="sistema/librerias/css/estiloshome/normalize.css">
@@ -59,7 +59,7 @@ height: 100%;
     </div>
   <div >
     <?php
-      require_once "sistema/includes/footer.html";
+      require_once "sistema/includes/footer.php";
     ?>
   </div>
 

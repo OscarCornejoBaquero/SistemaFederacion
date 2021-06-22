@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Inicio
+                    <a class="nav-link " href="#">Inicio
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -22,22 +22,43 @@
                         <a class="dropdown-item" href="#">Federación</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        aria-haspopup="true" aria-expanded="false">Administración Colegiados</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Nuevo Colegiado</a>
+                        <a class="dropdown-item" href="#">Administración Colegiados</a>
+                        <a class="dropdown-item" href="#">Reporte Colegiados</a>
                     </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Administración Clubes</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Nuevo Club</a>
+                        <a class="dropdown-item" href="#">Administración Clubes</a>
+                        <a class="dropdown-item" href="#">Reporte Clubes</a>
+                    </div>
+                </li>
+                
+               
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Administración Partidos</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Nuevo Partido</a>
+                        <a class="dropdown-item" href="#">Administración Partidos</a>
+                        <a class="dropdown-item" href="#">Reporte Partidos</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Gestión Encuestas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Sorteos Partidos
+                    </a>
                 </li>
             </ul>
         </div>

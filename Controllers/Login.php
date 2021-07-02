@@ -1,15 +1,15 @@
 <?php
-class Login extends Controllers{
+class login extends Controllers{
     public function __construct()
     {
         parent::__construct();
     }
-    
-    public function login(){
-        $data['tag_page'] = "grupo 2";
+    public function Login(){
+        $data['tag_page'] = "Home";
         $data['page_title'] = "Página prueba pepa";
-        $data['page_name'] = "Login";
+        $data['page_name'] = "home";
        $this->views->getView($this,"login",$data);
+       
     }
 
 }

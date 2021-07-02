@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 encabezado_logo">
-                <img class="logo" src="Assets/img/logoFEF.png">
+                <img class="logo" src="<?php echo media()?>/img/logoFEF.png">
                 <h1 class="tituWeb"></h1>
                 <h1>Federacion de Arbritos</h1>
             </div>

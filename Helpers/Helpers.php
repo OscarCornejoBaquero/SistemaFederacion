@@ -1,15 +1,24 @@
 <?php
-
+    //Retorna la Ruta del proyecto
     function base_url()
     {
         return BASE_URL;
     }
+    //Retorna la url del Assets
+    function media(){
+        return BASE_URL."Assets/";
+    }
+    //Muestra la informacion en un formato
     function dep($data)
     {
         $format = print_r('<pre>');
         $format .= print_r($data);
         $format .= print_r('</pre>');
         return $format;
+    }
+    function getModal(string $nameModal, $data){
+        $view_modal = "views/Templates/{$nameModal}.php";
+        require_once $view_modal;
     }
 
     //Copiar funcion de eliminar espacios despues 

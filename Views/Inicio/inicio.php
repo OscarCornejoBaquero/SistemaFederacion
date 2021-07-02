@@ -5,6 +5,7 @@
     <?php require_once "includes/head.php";?>
     <!--Llamado al archivo ViewsInicio que se usa para el contendio de la página de inicio-->
     <link rel="stylesheet" href="Librerias/css/estilosVistas/ViewsInicio.css">
+    <link rel="stylesheet" href="<?=media()?>css/desing.css">
 </head>
 
 <body>
@@ -19,16 +20,7 @@
     <div class="contenido_Inicio">
         <!--Div para separar el Main y Contenido de la página-->
         <!--Div para separar el Main y Contenido de la página-->
-        <h1><?php echo $data['page_title']; ?></h1>
-        <h2>hdhdhd</h2>
-        <h3>ddede</h3>
-        <button></button>
-    
-
-    
-
-
-
+        <?php require_once("dashboard.php")?>
 
 
 

@@ -70,7 +70,7 @@
     </div>
     <div>
         <?php
-            require_once "includes/home/slideshow.html";
+            require_once "includes/home/slideshow.php";
         ?>
     </div>
     <div>

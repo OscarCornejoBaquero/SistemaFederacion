@@ -12,5 +12,6 @@ class Inicio extends Controllers{
         
        $this->views->getView($this,"inicio",$data);
     }
+    
 }
 ?>

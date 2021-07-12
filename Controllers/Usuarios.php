@@ -1,5 +1,5 @@
 <?php
-namespace SistemaFederacion;
+
 require_once("Controllers/ExcepcionesUsuarios.php");
 require_once ("Librerias/Objetos/ObjPersona.php");
 class Usuarios extends Controllers{

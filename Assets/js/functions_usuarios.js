@@ -205,6 +205,7 @@ function fntEditUsuario(idpersona) {
                 document.querySelector("#txtApellido").value = objData.data.apellidos;
                 document.querySelector("#txtTelefono").value = objData.data.telefono;
                 document.querySelector("#txtEmail").value = objData.data.email_user;
+                document.querySelector("#txtPassword").value = objData.data.password;
                 document.querySelector("#listRolid").value = objData.data.id_rol;
                 $('#listRolid').selectpicker('render');
 

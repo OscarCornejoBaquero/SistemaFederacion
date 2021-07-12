@@ -55,13 +55,14 @@ require_once ("Librerias/Objetos/ObjPersona.php");
                         $this->objPersona->getTipoId(),
                         $this->objPersona->getStatus());
                 }else{
-                    $sql = "UPDATE persona SET cedula=?, nombres=?, apellidos=?, telefono=?, email_user=?, id_rol=?, status=? 
+                    $sql = "UPDATE persona SET cedula=?, nombres=?, apellidos=?, telefono=?, email_user=?, password=?, id_rol=?, status=? 
 							WHERE idpersona = '{$this->objPersona->getIdPersona()}' ";
                     $arrData = array($this->objPersona->getCedula(),
                         $this->objPersona->getNombre(),
                         $this->objPersona->getApellidos(),
                         $this->objPersona->getTelefono(),
                         $this->objPersona->getEmail(),
+                        $this->objPersona->getPassword(),
                         $this->objPersona->getTipoId(),
                         $this->objPersona->getStatus());
                 }

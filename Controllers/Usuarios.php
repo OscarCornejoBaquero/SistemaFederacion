@@ -33,6 +33,7 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         $this->objPersona->setTelefono(intval(strClean($_POST['txtTelefono'])));
         $this->objPersona->setEmail(strtolower(strClean($_POST['txtEmail'])));
         $this->objPersona->setTipoId(intval(strClean($_POST['listRolid'])));
+
         $this->objPersona->setStatus(intval(strClean($_POST['listStatus'])));
     }
 
@@ -58,7 +59,9 @@ private ErrorsUsuarios $valExcepcionesUsuario;
             try {
                 $this->asignarDatos();
                 $this->valExcepcionesUsuario->validarCamposVacios($this->objPersona);
-                $this->objPersona->setPassword(empty($_POST['txtPassword']) ? "" : hash("SHA256",$_POST['txtPassword']));
+                $this->objPersona->setPassword(empty($_POST['txtPassword']) ?  : hash("SHA256",$_POST['txtPassword']));
+               // dep($this->objPersona->getPassword());
+
                 $request_user = $this->model->updateUsuario($this->objPersona);
                 $this->valExcepcionesUsuario->validarUsuarioActualizado($request_user);
                 $arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');

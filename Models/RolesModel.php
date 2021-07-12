@@ -22,9 +22,8 @@
              //creacion del query para solicitar los datos
              $sql = "SELECT * FROM rol WHERE id_rol = '$idRol'";
              //Llamado al metodo select donde se ejecuta la consulta a la base de datos 
-             //en la clase Mysql 
-             $request = $this->select($sql);
-             return $request;
+             //en la clase Mysql
+             return $this->select($sql);
          }
          //Metodo para insertar un rol individual 
          public function insertRol(ObjRoles $objRoles)
@@ -97,8 +96,7 @@
 
          public function validarRolDel(int $id_rol){
             $sql = "SELECT * FROM persona WHERE id_rol = '$id_rol'";
-            $request = $this->select_all($sql);
-            return $request;
+            return $this->select_all($sql);
          }
     }
 ?>

@@ -4,12 +4,10 @@
 		public function __construct()
 		{
 			session_start();
-			/*
 			if(isset($_SESSION['login']))
 			{
 				header('Location: '.base_url().'dashboard');
 			}
-			*/
 			parent::__construct();
 		}
 
@@ -21,9 +19,9 @@
 			$data['page_functions_js'] = "functions_login.js";
 			$this->views->getView($this,"login",$data);
 		}
+		/*Funcion que permite realizar el login a un usuario validando el usuario y el password*/
 		public function loginUser(){
 			$validarExcepcionesLogin = new Errors();
-			//dep($_POST);
 			if($_POST){
 			try {
 				$validarExcepcionesLogin->validarCamposVacios($_POST['txtEmail'],$_POST['txtPassword']);
@@ -46,12 +44,8 @@
 		}
 	die();
 }
-		
-		
-
-		
-
-		public function resetPass(){
+    /*Funcion para resetear password (disponible en 2da entrega del proyecto)*/
+    public function resetPass(){
 			$validarExcepcionesLogin = new Errors();
 			if($_POST){
 				error_reporting(0);
@@ -85,16 +79,16 @@
 			}
 			die();
 		}
-
+        /*Funcion para confirmar el cambio de contraseña (Funcion disponible en el 2do parcial) */
 		public function confirmUser(string $params){
 			$validarExcepcionesLogin = new Errors();
 			try {
-				//$validarExcepcionesLogin->validarVacioConfirm($params);
+				$validarExcepcionesLogin->validarVacioConfirm($params);
 				$arrParams = explode(',',$params);
 				$strEmail = strClean($arrParams[0]);
 				$strToken = strClean($arrParams[1]);
 				$arrResponse = $this->model->getUsuario($strEmail,$strToken);
-				//$validarExcepcionesLogin->validarVacioConfirm($arrResponse);
+				$validarExcepcionesLogin->validarVacioConfirm($arrResponse);
 
 				$data['page_tag'] = "Cambiar contraseña";
 				$data['page_name'] = "cambiar_contrasenia";
@@ -110,7 +104,7 @@
 			}			
 			die();
 		}
-
+        /*Funcion para ccambio de contraseña (Funcion disponible en el 2do parcial) */
 		public function setPassword(){
 			
 			$validarExcepcionesLogin = new Errors();

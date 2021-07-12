@@ -16,6 +16,7 @@ class Colegiados extends Controllers implements Crud
         parent::__construct();
         $this->valExcepcionesColegiados = new ErrorsColegiados();
     }
+    /*LLamado de la vista y los datos para usar en la vista*/
     public function colegiados(){
         $data['page_id'] = 10;
         $data['page_tag'] = "Colegiados - Sistema Federacion de Arbritos";
@@ -24,6 +25,8 @@ class Colegiados extends Controllers implements Crud
         $data['page_functions_js'] = "functions_colegiados.js";
         $this->views->getView($this,"colegiados",$data);
     }
+    /*Funcion que inicializa los datos recibios por el metodo POST y se lo aplica
+    a los datos de los objetos */
     public function asignarDatos(){
         $this->objColegiado = new ObjColegiado();
         $this->objColegiado->setIdColegiado(intval($_POST['idColegiado']));
@@ -31,7 +34,7 @@ class Colegiados extends Controllers implements Crud
         $this->objColegiado->setCodFederacion(strClean($_POST['txtFederacion']));
         $this->objColegiado->setStatus(intval(strClean($_POST['listStatus'])));
     }
-
+    /*Funcion que permite seleccionar un colegiado del sistema */
     public function getIndividual(int $id)
     {
         $idColegiado = intval($id);
@@ -49,7 +52,7 @@ class Colegiados extends Controllers implements Crud
         }
         die();
     }
-
+/*Funcion que permite recuperar todos los colegiados del sistema */
     public function getAll()
     {
         $arrData = $this->model->selectColegiados();
@@ -72,7 +75,7 @@ class Colegiados extends Controllers implements Crud
         echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
         die();
     }
-
+    /*Funcion que permite setear un colegiado en el sistema */
     public function setRegistro()
     {
         if($_POST){
@@ -90,7 +93,7 @@ class Colegiados extends Controllers implements Crud
         }
         die();
     }
-
+    /*Funcion que permite editar un colegiado en el sistema */
     public function editRegistro()
     {
         if($_POST){
@@ -107,7 +110,7 @@ class Colegiados extends Controllers implements Crud
         }
         die();
     }
-
+    /*Funcion que permite eliminar un colegiado en el sistema */
     public function delRegistro()
     {
         if($_POST){

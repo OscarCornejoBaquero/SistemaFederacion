@@ -9,7 +9,9 @@ require_once ("Librerias/Objetos/ObjPersona.php");
 		{
 			parent::__construct();
             $this->valExcepcionesUsuario = new ErrorsUsuarios();
-		}	
+		}
+        /*Funcion que recibe como parametro un Objeto tipo persona y procede a insertar una persona a la
+        base de datos */
         public function insertUsuario(ObjPersona $objPersona){
             try {
                 $this->objPersona = $objPersona;
@@ -34,7 +36,8 @@ require_once ("Librerias/Objetos/ObjPersona.php");
             }
             return $return;
         }
-
+        /*Funcion que recibe como parametro un Objeto tipo persona y procede a actualizar una persona a la
+               base de datos */
         public function updateUsuario(ObjPersona $objPersona){
             $this->objPersona = $objPersona;
             $sql = "SELECT * FROM persona WHERE (email_user = '{$this->objPersona->getEmail()}' AND idpersona != '{$this->objPersona->getIdPersona()}')
@@ -72,7 +75,7 @@ require_once ("Librerias/Objetos/ObjPersona.php");
             }
             return $request;
         }
-
+        /*Funcion que selecciona todos los usuarios no recibe parametros */
         public function selectUsuarios()
 		{
 			$sql = "SELECT p.idpersona,p.cedula,p.nombres,p.apellidos,p.telefono,p.email_user,p.status,r.nombre_rol 
@@ -80,28 +83,23 @@ require_once ("Librerias/Objetos/ObjPersona.php");
 					INNER JOIN rol r
 					ON p.id_rol = r.id_rol
 					WHERE p.status != 0 ";
-					$request = $this->select_all($sql);
-					return $request;
+					return $this->select_all($sql);
 		}
-
+        /*Funcion que permite seleccionar un usuario recibe como parametro el Id del usuario a seleccionar */
 		public function selectUsuario(int $idpersona){
-			$this->intIdUsuario = $idpersona;
 			$sql = "SELECT p.idpersona,p.cedula,p.nombres,p.apellidos,p.telefono,p.email_user,r.id_rol,r.nombre_rol,p.status, DATE_FORMAT(p.datecreated, '%d-%m-%Y') as fechaRegistro 
 					FROM persona p
 					INNER JOIN rol r
 					ON p.id_rol = r.id_rol
-					WHERE p.idpersona = $this->intIdUsuario";
-			$request = $this->select($sql);
-			return $request;
+					WHERE p.idpersona = '$idpersona'";
+			return $this->select($sql);
 		}
-
+        /*Funcion que permite eliminar un usuario recibiendo un ID*/
 		public function deleteUsuario(int $intIdpersona)
 		{
-			$this->intIdUsuario = $intIdpersona;
-			$sql = "UPDATE persona SET status = ? WHERE idpersona = $this->intIdUsuario ";
+			$sql = "UPDATE persona SET status = ? WHERE idpersona = '$intIdpersona' ";
 			$arrData = array(0);
-			$request = $this->update($sql,$arrData);
-			return $request;
+			return $this->update($sql,$arrData);
 		}
 
 	}

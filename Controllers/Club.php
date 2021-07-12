@@ -17,6 +17,7 @@ class Club extends Controllers implements Crud
         parent::__construct();
         $this->valExcepcionesClub = new ErrorsClub();
     }
+    /*LLamado de la vista y los datos para usar en la vista*/
     public function club(){
         $data['page_id'] = 13;
         $data['page_tag'] = "Club - Sistema Federacion de Arbritos";
@@ -25,6 +26,8 @@ class Club extends Controllers implements Crud
         $data['page_functions_js'] = "functions_club.js";
         $this->views->getView($this,"club",$data);
     }
+    /*Funcion que inicializa los datos recibios por el metodo POST y se lo aplica
+    a los datos de los objetos */
     public function asignarDatos(){
         $this->objClub = new ObjClub();
         $this->objClub->setIdClub(intval($_POST['idClub']));
@@ -37,7 +40,7 @@ class Club extends Controllers implements Crud
         $this->objClub->setPresidente(strClean($_POST['txtPresidente']));
         $this->objClub->setStatus(intval($_POST['listStatus']));
     }
-
+    /*Funcion que permite seleccionar un club del sistema */
     public function getIndividual(int $id)
     {
         $id_club = intval($id);
@@ -55,12 +58,10 @@ class Club extends Controllers implements Crud
         }
         die();
     }
-
+    /*Funcion que permite recuperar todos los clubes del sistema */
     public function getAll()
     {
         $arrData = $this->model->selectClubs();
-
-
         for ($i=0; $i < sizeof($arrData); $i++) {
             if($arrData[$i]['status'] == 1)
             {
@@ -74,11 +75,11 @@ class Club extends Controllers implements Crud
 				<button class="btn btn-danger btn-sm btnDelUsuario" onClick="fntDelClub('.$arrData[$i]['id_club'].')" title="Eliminar Club"><i class="far fa-trash-alt"></i></button>
 				</div>';
         }
-
         echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
         die();
     }
 
+    /*Funcion que permite setear un club en el sistema */
     public function setRegistro()
     {
         if($_POST){
@@ -90,13 +91,12 @@ class Club extends Controllers implements Crud
                 $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
             }catch (Exception $e) {
                 $arrResponse = array("status" => false, "msg" => $e->getMessage());
-                //$arrResponse = array("status" => false, "msg" => $this->objColegiado->getIdPersona());
             }
             echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
         }
         die();
     }
-
+    /*Funcion que permite editar un club en el sistema */
     public function editRegistro()
     {
         if($_POST){
@@ -113,7 +113,7 @@ class Club extends Controllers implements Crud
     }
         die();
     }
-
+    /*Funcion que permite eliminar un club en el sistema */
     public function delRegistro()
     {
         if($_POST){

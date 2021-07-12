@@ -1,4 +1,5 @@
 <?php
+namespace SistemaFederacion;
 require_once("Controllers/ExcepcionesUsuarios.php");
 require_once ("Librerias/Objetos/ObjPersona.php");
 class Usuarios extends Controllers{
@@ -16,6 +17,7 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         parent::__construct();
 			$this->valExcepcionesUsuario = new ErrorsUsuarios();
     }
+    /*LLamado de la vista y los datos para usar en la vista*/
     public function usuarios(){
         $data['page_id'] = 4;
         $data['page_tag'] = "Usuarios - Sistema Federacion de Arbritos";
@@ -24,6 +26,8 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         $data['page_functions_js'] = "functions_usuarios.js";
        $this->views->getView($this,"usuarios",$data);
     }
+    /*Funcion que inicializa los datos recibios por el metodo POST y se lo aplica
+    a los datos de los objetos */
     public function asignarDatos(){
         $this->objPersona = new ObjPersona();
         $this->objPersona->setIdPersona(intval($_POST['idUsuario']));
@@ -33,10 +37,9 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         $this->objPersona->setTelefono(intval(strClean($_POST['txtTelefono'])));
         $this->objPersona->setEmail(strtolower(strClean($_POST['txtEmail'])));
         $this->objPersona->setTipoId(intval(strClean($_POST['listRolid'])));
-
         $this->objPersona->setStatus(intval(strClean($_POST['listStatus'])));
     }
-
+    /*Funcion que permite setear un usuario en el sistema */
     public function setUsuario(){
         if($_POST){
             try {
@@ -53,15 +56,13 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         }
         die();
     }
-
+    /*Funcion que permite editar un usuario en el sistema */
     public function editUsuario(){
         if($_POST){
             try {
                 $this->asignarDatos();
                 $this->valExcepcionesUsuario->validarCamposVacios($this->objPersona);
                 $this->objPersona->setPassword(empty($_POST['txtPassword']) ?  : hash("SHA256",$_POST['txtPassword']));
-               // dep($this->objPersona->getPassword());
-
                 $request_user = $this->model->updateUsuario($this->objPersona);
                 $this->valExcepcionesUsuario->validarUsuarioActualizado($request_user);
                 $arrResponse = array('status' => true, 'msg' => 'Datos Actualizados correctamente.');
@@ -72,7 +73,7 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         }
         die();
     }
-
+    /*Funcion que permite recuperar todos los usuarios del sistema */
     public function getUsuarios()
     {
         $arrData = $this->model->selectUsuarios();
@@ -92,7 +93,7 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         echo json_encode($arrData,JSON_UNESCAPED_UNICODE);
         die();
     }
-
+    /*Funcion que permite seleccionar un usuario del sistema */
     public function getUsuario(int $idpersona){
         $idusuario = intval($idpersona);
         if($idusuario > RESPUESTA_QUERY)
@@ -104,11 +105,12 @@ private ErrorsUsuarios $valExcepcionesUsuario;
             }catch (Exception $e){
                 $arrResponse = array('status' => false, 'msg' => $e->getMessage());
             }
+            //dep($arrResponse);
             echo json_encode($arrResponse,JSON_UNESCAPED_UNICODE);
         }
         die();
     }
-
+    /*Funcion que permite eliminar un usuario en el sistema */
     public function delUsuario()
     {
         if($_POST){
@@ -124,6 +126,8 @@ private ErrorsUsuarios $valExcepcionesUsuario;
         }
         die();
     }
+    /*Funcion que permite recuperar la lista de usaurios para crear un colegio
+    la llamada de esta funcion esta en el controlador colegiados*/
     public function getSelectUsuarios()
     {
         $htmlOptions = "";

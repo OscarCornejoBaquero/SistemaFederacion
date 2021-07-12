@@ -4,6 +4,7 @@ class Permisos extends Controllers{
     {
         parent::__construct();
     }
+    /*Funcion que recupera los permisol que tiene el usuairo */
     public function getPermisosRol(int $idrol)
 		{
             $rol_id = intval($idrol);
@@ -22,24 +23,18 @@ class Permisos extends Controllers{
                                             'write' => $arrPermisosRol[$i]['write_permiso'],
                                             'update' => $arrPermisosRol[$i]['update_permiso'],
                                             'delete' => $arrPermisosRol[$i]['delete_permiso'],
-
                                         );
                     if($arrModulos[$i]['idmodulo'] == $arrPermisoRol[$i]['id_modulo']){
                         $arrModulos[$i]['permisos'] = $arrPermisos;
                     }
                 }
             }
-					
 				$arrPermisoRol['modulos'] = $arrModulos;
 				$html = getModal("modalPermisos",$arrPermisoRol);
-				//dep($arrPermisoRol);
-
 			}
 			die();
 		}
-
- 
-
+		/*Funcion para setear los permisos al usuario */
     public function setPermisos(){
         if($_POST){
             $intIdrol = intval($_POST['id_rol']);
@@ -62,6 +57,5 @@ class Permisos extends Controllers{
         }
         die();
     }
-
 }
 ?>

@@ -2,31 +2,22 @@
 
 	class LoginModel extends Mysql
 	{
-		private $intIdUsuario;
-		private $strUsuario;
-		private $strPassword;
-		private $strToken;
-
-		public function __construct()
+	 	public function __construct()
 		{
 			parent::__construct();
 		}	
-
+    /*  Funcion que recibe el usuario y contraseña */
 		public function loginUser(string $usuario, string $password)
 		{
-			$this->strUsuario = $usuario;
-			$this->strPassword = $password;
 			$sql = "SELECT idpersona,status FROM persona WHERE 
-					email_user = '$this->strUsuario' and 
-					password = '$this->strPassword' and 
+					email_user = '$usuario' and 
+					password = '$password' and 
 					status != 0 ";
-			
-			$request = $this->select($sql);
-			return $request;
+			return $this->select($sql);
 		}
-
+        /*Funcion que permite identificar el role para la secciones recibe un id user*/
 		public function sessionLogin(int $iduser){
-			$this->intIdUsuario = $iduser;
+
 			//BUSCAR ROLE 
 			$sql = "SELECT p.idpersona,
 							p.cedula,
@@ -39,48 +30,37 @@
 					FROM persona p
 					INNER JOIN rol r
 					ON p.id_rol = r.id_rol
-					WHERE p.idpersona = $this->intIdUsuario";
+					WHERE p.idpersona = '$iduser'";
 			$request = $this->select($sql);
 			//$_SESSION['userData'] = $request;
 			return $request;
 		}
-
+        /*Esta funciona genera los datos de un usuario por medio del email recibiendolo como parametro*/
 		public function getUserEmail(string $strEmail){
-			$this->strUsuario = $strEmail;
 			$sql = "SELECT idpersona,nombres,apellidos,status FROM persona WHERE 
-					email_user = '$this->strUsuario' and  
+					email_user = '$strEmail' and  
 					status = 1 ";
-			$request = $this->select($sql);
-			return $request;
+			return $this->select($sql);
 		}
-
+        /*Funcion que permite asignar un token para el reseteo de la contraseña en caso de olvido o perdida*/
 		public function setTokenUser(int $idpersona, string $token){
-			$this->intIdUsuario = $idpersona;
-			$this->strToken = $token;
-			$sql = "UPDATE persona SET token = ? WHERE idpersona = $this->intIdUsuario ";
-			$arrData = array($this->strToken);
-			$request = $this->update($sql,$arrData);
-			return $request;
+		    $sql = "UPDATE persona SET token = ? WHERE idpersona = '$idpersona' ";
+			$arrData = array($token);
+			return $this->update($sql,$arrData);
 		}
-
+        /*Funcion que recupera un usuario por email y token al momento de resetear*/
 		public function getUsuario(string $email, string $token){
-			$this->strUsuario = $email;
-			$this->strToken = $token;
 			$sql = "SELECT idpersona FROM persona WHERE 
-					email_user = '$this->strUsuario' and 
-					token = '$this->strToken' and 					
+					email_user = '$email' and 
+					token = '$token' and 					
 					status = 1 ";
-			$request = $this->select($sql);
-			return $request;
+			return $this->select($sql);
 		}
-
+        /*Funcion que permite insertar una contraseña al momento de resetear */
 		public function insertPassword(int $idPersona, string $password){
-			$this->intIdUsuario = $idPersona;
-			$this->strPassword = $password;
-			$sql = "UPDATE persona SET password = ?, token = ? WHERE idpersona = $this->intIdUsuario ";
-			$arrData = array($this->strPassword,"");
-			$request = $this->update($sql,$arrData);
-			return $request;
+			$sql = "UPDATE persona SET password = ?, token = ? WHERE idpersona = '$idPersona' ";
+			$arrData = array($password,"");
+			return $this->update($sql,$arrData);
 		}
 	}
  ?>

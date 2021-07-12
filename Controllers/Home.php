@@ -4,6 +4,7 @@ class Home extends Controllers{
     {
         parent::__construct();
     }
+    /*LLamado de la vista y los datos para usar en la vista*/
     public function home(){
         $data['tag_page'] = "Home";
         $data['page_title'] = "Página prueba pepa";

@@ -1,5 +1,5 @@
 <?php
-
+/*Llamado a los archivos requeridos de la clase*/
 require_once("Controllers/ExcepcionesColegiados.php");
 require_once ("Librerias/Objetos/ObjColegiado.php");
 class ColegiadosModel extends Mysql
@@ -11,6 +11,8 @@ class ColegiadosModel extends Mysql
         parent::__construct();
         $this->valExcepcionesColegiados = new ErrorsColegiados();
     }
+    /*Funcion que recibe como parametro un Objeto tipo colegiado y procede a insertar un colegiado a la
+        base de datos */
     public function insertColegiado(ObjColegiado $objColegiado){
         try {
             $this->objColegiado = $objColegiado;
@@ -30,7 +32,8 @@ class ColegiadosModel extends Mysql
         }
         return $return;
     }
-
+    /*Funcion que recibe como parametro un Objeto tipo colegiado y procede a actualizar un colegiado a la
+        base de datos */
     public function updateColegiado(ObjColegiado $objColegiado){
         $this->objColegiado = $objColegiado;
         $sql = "SELECT * FROM colegiado WHERE (id_persona = '{$this->objColegiado->getIdPersona()}' AND id_colegiado != '{$this->objColegiado->getIdColegiado()}') ";
@@ -49,7 +52,7 @@ class ColegiadosModel extends Mysql
         }
         return $request;
     }
-
+    /*Funcion que selecciona todos los colegiados no recibe parametros */
     public function selectColegiados()
     {
         $sql = "SELECT c.id_colegiado, c.codigo_federacion, c.status, p.idpersona,p.cedula,p.nombres,p.apellidos,p.telefono,p.email_user 
@@ -57,10 +60,9 @@ class ColegiadosModel extends Mysql
 					INNER JOIN persona p
 					ON c.id_persona = p.idpersona
 					WHERE c.status != 0 ";
-        $request = $this->select_all($sql);
-        return $request;
+        return $this->select_all($sql);
     }
-
+    /*Funcion que permite seleccionar un colegiado recibe como parametro el Id del colegiado a seleccionar */
     public function selectColegiado(int $idColegiado){
         $intIdColegiado = $idColegiado;
         $sql = "SELECT c.id_colegiado, c.codigo_federacion, c.status, p.idpersona,p.cedula,p.nombres,p.apellidos,p.telefono,p.email_user,DATE_FORMAT(p.datecreated, '%d-%m-%Y') as fechaRegistro
@@ -68,17 +70,15 @@ class ColegiadosModel extends Mysql
 					INNER JOIN persona p
 					ON c.id_persona = p.idpersona
 					WHERE c.id_colegiado = $intIdColegiado";
-        $request = $this->select($sql);
-        return $request;
+        return $this->select($sql);
     }
 
+    /*Funcion que permite eliminar un colegiado recibiendo un ID*/
     public function deleteColegiado(int $idColegiado)
     {
         $this->idColegiado = $idColegiado;
         $sql = "DELETE from colegiado WHERE id_colegiado = $this->idColegiado";
-
-        $request = $this->delete($sql);
-        return $request;
+        return $this->delete($sql);
     }
 
 }

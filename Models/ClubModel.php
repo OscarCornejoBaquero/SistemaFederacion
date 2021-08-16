@@ -89,7 +89,7 @@ class ClubModel extends Mysql
     }
 
     /*Funcion que permite eliminar un club recibiendo un ID*/
-    public function deleteClub(int $id_club)
+    public function eliminarClub(int $id_club)
     {
         $id_club = $id_club;
         $sql = "DELETE FROM `club` WHERE id_club = $id_club";

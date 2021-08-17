@@ -35,13 +35,13 @@ class ClubModel extends Mysql
         try {
             //Se asigna al objetio club de la clase el club recibido
             $this->objClub = $objClub;
-            $sql = "SELECT * FROM club WHERE 
+            $sql = "SELECT * FROM club WHERE
 					codigo_club = '{$this->objClub->getCodigoClub()}'";
             $request = $this->select_all($sql);
             $this->valExcepcionesClub->validarQueryInsertar($request);
-            $query_insert  = "INSERT INTO club(`codigo_club`, `nombre_club`, `correo_club`, 
-                                                `asociacion_futbol`, `direccion_club`, 
-                                                `fecha_fundacion`, `presidente`, `status`) 
+            $query_insert  = "INSERT INTO club(`codigo_club`, `nombre_club`, `correo_club`,
+                                                `asociacion_futbol`, `direccion_club`,
+                                                `fecha_fundacion`, `presidente`, `status`)
 								  VALUES(?,?,?,?,?,?,?,?)";
             //Ingreso de los datos obtenidos a un arreglo de datos
             $arrData = array($this->objClub->getCodigoClub(),
@@ -92,7 +92,7 @@ class ClubModel extends Mysql
     public function eliminarClub(int $id_club)
     {
         $id_club = $id_club;
-        $sql = "DELETE FROM `club` WHERE id_club = $id_club";
+        $sql = "DELETE FROM `club` WHERE id_club = 1";
 
         $request = $this->delete($sql);
         return $request;

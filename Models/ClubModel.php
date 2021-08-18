@@ -25,11 +25,10 @@ class ClubModel extends Mysql
     *No recibe parametros */
     public function selectClubs()
     {
-        //creacion del query para solicitar los datos
-        $sql = "SELECT * FROM club WHERE status !=0";
+
         /*Llamado al metodo select_all donde se ejecuta la consulta a la base de datos
         en la clase Mysql*/
-        $request = $this->select_all($sql);
+        $request = $this->select_all("SELECT * FROM club WHERE status !=0");
         return $request;
     }
     /*Funcion: Recibe como parametro un Objeto tipo club y procede a insertar un club a la

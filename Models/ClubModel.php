@@ -11,7 +11,9 @@ class ClubModel extends Mysql
         parent::__construct();
         $this->valExcepcionesClub = new ErrorsClub();
     }
-    /*Funcion que permite seleccionar un club recibe como parametro el Id del club a seleccionar */
+    /*Funcion: Permite seleccionar un club, recive: 
+    *@param int $id_club
+    */
     public function selectClub(int $idClub){
         $idClub = $idClub;
         $sql = "SELECT *
@@ -19,17 +21,17 @@ class ClubModel extends Mysql
         $request = $this->select($sql);
         return $request;
     }
-    /*Funcion que selecciona todos los clubs no recibe parametros */
+    /*Funcion: Selecciona todos los clubes 
+    *No recibe parametros */
     public function selectClubs()
     {
-        //creacion del query para solicitar los datos
-        $sql = "SELECT * FROM club WHERE status !=0";
-        //Llamado al metodo select_all donde se ejecuta la consulta a la base de datos
-        //en la clase Mysql
-        $request = $this->select_all($sql);
+
+        /*Llamado al metodo select_all donde se ejecuta la consulta a la base de datos
+        en la clase Mysql*/
+        $request = $this->select_all("SELECT * FROM club WHERE status !=0");
         return $request;
     }
-    /*Funcion que recibe como parametro un Objeto tipo club y procede a insertar un club a la
+    /*Funcion: Recibe como parametro un Objeto tipo club y procede a insertar un club a la
     base de datos */
     public function insertClub(ObjClub $objClub){
         try {
@@ -88,7 +90,8 @@ class ClubModel extends Mysql
         return $request;
     }
 
-    /*Funcion que permite eliminar un club recibiendo un ID*/
+    /*Funcion: Permite eliminar un club, recive
+    *@param int $id_club*/
     public function eliminarClub(int $id_club)
     {
         $id_club = $id_club;
